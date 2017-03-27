@@ -131,22 +131,22 @@ func (S *ShopCartService) HandleShopCartRemoveTask(a IShopCartApp, task *ShopCar
 	args = append(args, task.Uid)
 
 	if task.Type != "" {
-		sql.WriteString(" WHERE type=?")
+		sql.WriteString(" AND type=?")
 		args = append(args, task.Type)
 	}
 
 	if task.ShopId != 0 {
-		sql.WriteString(" WHERE shopid=?")
+		sql.WriteString(" AND shopid=?")
 		args = append(args, task.ShopId)
 	}
 
 	if task.ItemId != 0 {
-		sql.WriteString(" WHERE itemid=?")
+		sql.WriteString(" AND itemid=?")
 		args = append(args, task.ItemId)
 	}
 
 	if task.OptionId != 0 {
-		sql.WriteString(" WHERE optionid=?")
+		sql.WriteString(" AND optionid=?")
 		args = append(args, task.OptionId)
 	}
 
