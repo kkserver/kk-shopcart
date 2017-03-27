@@ -6,6 +6,7 @@ import (
 	"github.com/kkserver/kk-lib/kk"
 	"github.com/kkserver/kk-lib/kk/app"
 	"github.com/kkserver/kk-lib/kk/json"
+	"strings"
 	"time"
 )
 
@@ -148,6 +149,22 @@ func (S *ShopCartService) HandleShopCartRemoveTask(a IShopCartApp, task *ShopCar
 	if task.OptionId != 0 {
 		sql.WriteString(" AND optionid=?")
 		args = append(args, task.OptionId)
+	}
+
+	if task.Ids != "" {
+
+		sql.WriteString(" AND id IN (")
+
+		for i, s := range strings.Split(task.Ids, ",") {
+			if i != 0 {
+				sql.WriteString(",")
+			}
+			sql.WriteString("?")
+			args = append(args, s)
+		}
+
+		sql.WriteString(")")
+
 	}
 
 	v := ShopCart{}

@@ -11,6 +11,7 @@ type ShopCartRemoveTaskResult struct {
 
 type ShopCartRemoveTask struct {
 	app.Task
+	Ids      string `json:"ids"`      //IDs
 	Uid      int64  `json:"uid"`      //用户ID
 	Type     string `json:"type"`     //类型
 	ShopId   int64  `json:"shopId"`   //店铺ID
